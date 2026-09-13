@@ -1,0 +1,258 @@
+﻿# Dharohar 1.0 - Website Project
+
+This repository contains the unique, immersive landing page for **Dharohar 1.0**, an educational RPG set in the ancient Nalanda Mahavihara. 
+
+The website uses a custom "tech-exhibition" layout with glassmorphism UI cards, glowing asymmetric Bento grids, and sleek JavaScript-driven splash screen transitions to showcase the game's features.
+
+## Purpose of this Document
+This file was created to be provided to **NotebookLM**. It outlines the vision, features, and specifically the existing game assets. By feeding this into NotebookLM, you can have it help brainstorm, write copy, or suggest further additions to make the website even more unique, engaging, and deeply integrated with the game's actual content.
+
+## The Vision
+Instead of just reading about India's heritage, Dharohar allows learners to experience it.
+**Core Philosophy:** Explore → Discover → Learn → Think → Solve
+
+## Key Features
+1. **Nalanda Map Exploration**: 2D pixel-art environments of ancient Nalanda University.
+2. **Cinematic Cutscenes**: Immersive intro sequences and domain-specific travel cutscenes.
+3. **NPC Interactions**: Engage with dynamic NPCs (Merchant, Teacher Silabhadra, Disciples).
+4. **5 Core Domains**: Mathematics, Astronomy, Medicine, Philosophy, and Logic.
+
+## Existing Game Assets (Exhaustive List)
+Below is the strict and exhaustive list of every single .png, .jpg, .jpeg, and .mp4 asset found in the game's project directory. NotebookLM should use this list to understand exactly what visual elements and videos can be referenced or embedded into the website.
+
+- dharohar\assets\background\experience_screen.png
+- dharohar\assets\background\main_menu_screen.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Builder\area.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Builder\moving.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Builder\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Farmer\farm.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Farmer\moving.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Farmer\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\fisherman\fisherman_sprite_sheet.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\fisherman\movement.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\fisherman\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\merchant\merchant_sprite_sheet.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\merchant\movement.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\merchant\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\monk_bhikshu\ChatGPT Image Aug 24, 2026, 06_41_25 PM.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\monk_bhikshu\monk_bhikshu_sprite_sheet.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\monk_bhikshu\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Scholar\movement2.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Scholar\standing2.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Scribe\moving.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\Scribe\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\special_npc\1npc_standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\special_npc\2npc_standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\special_npc\3npc_standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\special_npc\4npc_standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\special_npc\movement.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\student_boy\movement.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\student_boy\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\student_girl\girl2.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\student_girl\moving.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\student_girl\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\teacher\2teacher.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\teacher\2teacher_standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\teacher\movement.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\teacher\teacher1.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\teacher\teacher3.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\teacher\teacher_sprite_sheet.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\villager\movement.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\villager\movent2.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\villager\standing.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\villager\standing2.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\villager\student_boy_sprite_sheet.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\villager\villager3.png
+- dharohar\assets\Dharohar_Character_Sprite_Pack\preview_checkerboard.png
+- dharohar\assets\Elements\buildings\Art library.png
+- dharohar\assets\Elements\buildings\Bridge.png
+- dharohar\assets\Elements\buildings\bridge3.png
+- dharohar\assets\Elements\buildings\build.png
+- dharohar\assets\Elements\buildings\build2.png
+- dharohar\assets\Elements\buildings\build3.png
+- dharohar\assets\Elements\buildings\build4.png
+- dharohar\assets\Elements\buildings\build5.png
+- dharohar\assets\Elements\buildings\bunch.png
+- dharohar\assets\Elements\buildings\bush.png
+- dharohar\assets\Elements\buildings\bush2.png
+- dharohar\assets\Elements\buildings\bush3.png
+- dharohar\assets\Elements\buildings\bush4.png
+- dharohar\assets\Elements\buildings\GrassBush.png
+- dharohar\assets\Elements\buildings\house-village.png
+- dharohar\assets\Elements\buildings\InnerLibrary.png
+- dharohar\assets\Elements\buildings\innerVihar.png
+- dharohar\assets\Elements\buildings\largerRock.png
+- dharohar\assets\Elements\buildings\matka.png
+- dharohar\assets\Elements\buildings\monument-nalanda.png
+- dharohar\assets\Elements\buildings\monument-village.png
+- dharohar\assets\Elements\buildings\nalanda_main.png
+- dharohar\assets\Elements\buildings\rock_extracted_transparent.png
+- dharohar\assets\Elements\buildings\stone.png
+- dharohar\assets\Elements\buildings\stone2.png
+- dharohar\assets\Elements\buildings\table.png
+- dharohar\assets\Elements\buildings\Temple.png
+- dharohar\assets\Elements\buildings\Tomb.png
+- dharohar\assets\Elements\buildings\Tree.png
+- dharohar\assets\Elements\buildings\tree2.png
+- dharohar\assets\Elements\buildings\tree3.png
+- dharohar\assets\Elements\buildings\tree4.png
+- dharohar\assets\Elements\buildings\Treeee.png
+- dharohar\assets\Elements\buildings\Vihar-village.png
+- dharohar\assets\Elements\buildings\vihar.png
+- dharohar\assets\Elements\buildings\vihar2-village.png
+- dharohar\assets\Elements\buildings\vill-monument.png
+- dharohar\assets\Elements\buildings\vill-monument3.png
+- dharohar\assets\Elements\buildings\village house.png
+- dharohar\assets\Elements\villagePack\clothesline.png
+- dharohar\assets\Elements\villagePack\garden_patch.png
+- dharohar\assets\Elements\villagePack\haystack.png
+- dharohar\assets\Elements\villagePack\hut_01_large.png
+- dharohar\assets\Elements\villagePack\hut_02_small.png
+- dharohar\assets\Elements\villagePack\hut_03_round.png
+- dharohar\assets\Elements\villagePack\hut_04_longhouse.png
+- dharohar\assets\Elements\villagePack\hut_05_cottage.png
+- dharohar\assets\Elements\villagePack\market_shelter.png
+- dharohar\assets\Elements\villagePack\tree.png
+- dharohar\assets\Elements\villagePack\well.png
+- dharohar\assets\Elements\villagePack\wooden_cart.png
+- dharohar\assets\Elements\villagePack\woodpile.png
+- dharohar\assets\Elements\preview.png
+- dharohar\assets\Escape_Sequence_UI_Pack\reference\escape_sequence_ui_reference.png
+- dharohar\assets\hampi\hampi button.png
+- dharohar\assets\hampi\hampi village.png
+- dharohar\assets\items\item_food_pot.png
+- dharohar\assets\items\item_grain_sack.png
+- dharohar\assets\items\item_stupa_cloth.png
+- dharohar\assets\items\item_stupa_flowers.png
+- dharohar\assets\items\item_stupa_lamp.png
+- dharohar\assets\items\item_veg_basket.png
+- dharohar\assets\items\item_vihara_rope.png
+- dharohar\assets\items\item_vihara_stone.png
+- dharohar\assets\items\item_vihara_wood.png
+- dharohar\assets\map\Nalanda University.png
+- dharohar\assets\map\NalandaTrial.png
+- dharohar\assets\map\village.jpeg
+- dharohar\assets\map\village.png
+- dharohar\assets\Player\Guruji.png
+- dharohar\assets\Player\Merchant.png
+- dharohar\assets\Player\player.png
+- dharohar\assets\Player\player_tileset.png
+- dharohar\assets\ui\escape_sequence\reference\escape_sequence_ui_reference.png
+- dharohar\assets\ui\back_button.png
+- dharohar\assets\ui\book animation tile.png
+- dharohar\assets\ui\book.png
+- dharohar\assets\ui\button.png
+- dharohar\assets\ui\coming sooon.png
+- dharohar\assets\videos\video1.mp4
+- dharohar\assets\videos\video2.mp4
+- dharohar\assets\videos\video3.mp4
+- dharohar\assets\videos\video4.mp4
+- dharohar\assets\videos\video5.mp4
+- dharohar\assets\nalanda_card_transparent.png
+- dharohar\Dharohar_Puzzle_UI_Pack\Dharohar_Puzzle_UI_Pack\Source_Atlas\Dharohar_Puzzle_UI_Master_Atlas.png
+- dharohar\Dharohar_Puzzle_UI_Pack\Dharohar_Puzzle_UI_Pack\Dharohar_Puzzle_UI_Atlas.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_0_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_1_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_2_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_3_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_4_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_5_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_6_7.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_0.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_1.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_2.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_3.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_4.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_5.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_6.png
+- dharohar\Dharohar_Puzzle_UI_Pack\previews\tile_7_7.png
+- dharohar\Puzzle Assets\Astronomy\Stars\star_bright.png
+- dharohar\Puzzle Assets\Astronomy\Stars\star_medium.png
+- dharohar\Puzzle Assets\Astronomy\Stars\star_selected.png
+- dharohar\Puzzle Assets\Astronomy\Stars\star_small.png
+- dharohar\Puzzle Assets\Common\Buttons\reset.png
+- dharohar\Puzzle Assets\Common\Buttons\submit.png
+- dharohar\Puzzle Assets\Common\Feedback_Icons\correct.png
+- dharohar\Puzzle Assets\Common\Feedback_Icons\incorrect.png
+- dharohar\Puzzle Assets\Common\UI_Panels\puzzle_panel.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\0.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\1.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\2.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\3.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\4.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\5.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\6.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\7.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\8.png
+- dharohar\Puzzle Assets\Mathematics\Number_Tiles\9.png
+- dharohar\Puzzle Assets\Mathematics\Operator_Tiles\divide.png
+- dharohar\Puzzle Assets\Mathematics\Operator_Tiles\equals.png
+- dharohar\Puzzle Assets\Mathematics\Operator_Tiles\minus.png
+- dharohar\Puzzle Assets\Mathematics\Operator_Tiles\multiply.png
+- dharohar\Puzzle Assets\Mathematics\Operator_Tiles\plus.png
+- dharohar\Puzzle Assets\Mathematics\UI_Elements\question_panel.png
+- dharohar\Puzzle Assets\Medicine\Herbs\amla.png
+- dharohar\Puzzle Assets\Medicine\Herbs\ashoka.png
+- dharohar\Puzzle Assets\Medicine\Herbs\ginger.png
+- dharohar\Puzzle Assets\Medicine\Herbs\neem.png
+- dharohar\Puzzle Assets\Medicine\Herbs\tulsi.png
+- dharohar\Puzzle Assets\Medicine\Herbs\turmeric.png
+- dharohar\Puzzle Assets\Philosophy\Icons\ink_pot.png
+- dharohar\Puzzle Assets\Philosophy\Icons\scroll_icon.png
+- dharohar\Puzzle Assets\Philosophy\Icons\stylus_icon.png
+
+## Next Steps for NotebookLM
+When interacting with NotebookLM, you can ask it to:
+- Write engaging lore or website copy for each of the 5 domains based on the game's vision.
+- Suggest how to embed specific .mp4 background videos for the hero section.
+- Propose layout ideas to integrate specific .png assets into the website's CSS or section dividers.
+- Create promotional blog posts to host on the website based on the game's story and characters (like Teacher Silabhadra).

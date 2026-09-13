@@ -1,0 +1,404 @@
+/*
+ * Dharohar 1.0 — 3-Section Interactive Web Portal
+ * Theme: Ancient Nalanda Mahavihara | 2D Pixel-Art Aesthetics | Cloud Parallax
+ */
+
+/* ═══════════ Font Faces ═══════════ */
+@font-face {
+    font-family: 'PixelifySans';
+    src: url('assets/fonts/PixelifySans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PixelifySans';
+    src: url('assets/fonts/PixelifySans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PixelifySans';
+    src: url('assets/fonts/PixelifySans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('assets/fonts/Oswald-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('assets/fonts/Oswald-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('assets/fonts/Oswald-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ═══════════ Variables ═══════════ */
+:root {
+    --bg-dark: #070a0e;
+    --bg-parchment: #0d131a;
+    --bg-card: rgba(14, 21, 29, 0.82);
+    --gold-bright: #fbbf24;
+    --gold-glow: #f59e0b;
+    --saffron-mid: #d97706;
+    --saffron-deep: #b45309;
+    --crimson-terracotta: #9a3412;
+    --border-gold: rgba(245, 158, 11, 0.35);
+    --text-parchment: #f3ede2;
+}
+
+/* ═══════════ Base Styles ═══════════ */
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-parchment);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ═══════════ Scrollbar ═══════════ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--saffron-mid);
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-glow);
+}
+
+/* ═══════════ Typography ═══════════ */
+.font-pixel {
+    font-family: 'PixelifySans', 'Courier New', monospace;
+}
+.font-heading {
+    font-family: 'Oswald', sans-serif;
+}
+
+.text-gold-glow {
+    text-shadow: 0 0 16px rgba(245, 158, 11, 0.65), 0 0 35px rgba(217, 119, 6, 0.35);
+}
+.text-gold-subtle {
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+}
+
+/* ═══════════ Pixel Art & Rendering ═══════════ */
+.pixel-art {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Stepped Pixel Border Panel */
+.pixel-box {
+    background: var(--bg-card);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 2px solid var(--saffron-mid);
+    box-shadow: 
+        inset -2px -2px 0px 0px var(--saffron-deep),
+        inset 2px 2px 0px 0px var(--gold-bright),
+        0 8px 30px rgba(0, 0, 0, 0.65);
+    position: relative;
+}
+
+.pixel-box-sm {
+    background: rgba(18, 26, 36, 0.78);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    box-shadow: 
+        inset -1px -1px 0px 0px rgba(180, 83, 9, 0.5),
+        inset 1px 1px 0px 0px rgba(251, 191, 36, 0.4),
+        0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.pixel-box-sm:hover {
+    border-color: var(--gold-glow);
+    box-shadow: 
+        inset -1px -1px 0px 0px var(--saffron-mid),
+        inset 1px 1px 0px 0px var(--gold-bright),
+        0 6px 25px rgba(245, 158, 11, 0.25);
+}
+
+/* Pixel Buttons */
+.pixel-btn-primary {
+    font-family: 'PixelifySans', 'Oswald', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+    color: #0b0f14;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 14px 28px;
+    border: none;
+    box-shadow: 
+        inset -3px -3px 0px 0px #b45309,
+        inset 3px 3px 0px 0px #fef3c7,
+        0 4px 18px rgba(245, 158, 11, 0.45);
+    transition: all 0.16s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.pixel-btn-primary:hover {
+    background: linear-gradient(180deg, #fde68a 0%, #f59e0b 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        inset -3px -3px 0px 0px #b45309,
+        inset 3px 3px 0px 0px #ffffff,
+        0 6px 28px rgba(245, 158, 11, 0.7);
+}
+
+.pixel-btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 
+        inset 3px 3px 0px 0px #78350f,
+        inset -2px -2px 0px 0px #fde68a;
+}
+
+.pixel-btn-secondary {
+    font-family: 'PixelifySans', 'Oswald', sans-serif;
+    font-weight: 600;
+    background: rgba(14, 21, 29, 0.75);
+    color: var(--gold-bright);
+    border: 2px solid var(--saffron-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 24px;
+    box-shadow: 
+        inset -2px -2px 0px 0px #78350f,
+        inset 2px 2px 0px 0px rgba(251, 191, 36, 0.5),
+        0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.16s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+}
+
+.pixel-btn-secondary:hover {
+    background: rgba(217, 119, 6, 0.18);
+    border-color: var(--gold-bright);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 
+        inset -2px -2px 0px 0px #b45309,
+        inset 2px 2px 0px 0px #fef3c7,
+        0 6px 22px rgba(245, 158, 11, 0.35);
+}
+
+/* ═══════════ Saffron & Gold Filters for SVGs ═══════════ */
+.filter-saffron {
+    filter: brightness(0) saturate(100%) invert(67%) sepia(87%) saturate(1478%) hue-rotate(357deg) brightness(101%) contrast(106%);
+}
+.filter-gold {
+    filter: brightness(0) saturate(100%) invert(80%) sepia(50%) saturate(2000%) hue-rotate(5deg) brightness(105%) contrast(105%);
+}
+
+/* ═══════════ Nalanda Torana Gate: Pillars & Connecting Beam ═══════════ */
+:root {
+    --torana-pillar-width: 72px;
+}
+@media (min-width: 768px) {
+    :root {
+        --torana-pillar-width: 96px;
+    }
+}
+@media (min-width: 1440px) {
+    :root {
+        --torana-pillar-width: 104px;
+    }
+}
+
+.torana-pillar-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--torana-pillar-width);
+    height: 100vh;
+    z-index: 55;
+    pointer-events: none;
+    filter: drop-shadow(6px 0 24px rgba(0, 0, 0, 0.85));
+}
+
+.torana-pillar-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--torana-pillar-width);
+    height: 100vh;
+    z-index: 55;
+    pointer-events: none;
+    filter: drop-shadow(-6px 0 24px rgba(0, 0, 0, 0.85));
+}
+
+/* Connecting Torana Beam Navbar */
+.torana-beam-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background: linear-gradient(180deg, #16202c 0%, #0d141e 100%);
+    border-top: 3px solid #fbbf24;
+    border-bottom: 3px solid #d97706;
+    box-shadow: 
+        inset 0 2px 0 0 #fef08a,
+        inset 0 -2px 0 0 #78350f,
+        0 8px 32px rgba(0, 0, 0, 0.75);
+}
+
+.torana-beam-nav::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: var(--torana-pillar-width);
+    right: var(--torana-pillar-width);
+    height: 4px;
+    background-image: repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 8px, #78350f 8px, #78350f 16px);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.torana-beam-nav::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: var(--torana-pillar-width);
+    right: var(--torana-pillar-width);
+    height: 4px;
+    background-image: repeating-linear-gradient(90deg, #d97706 0, #d97706 6px, transparent 6px, transparent 12px);
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/* Pillar-safe horizontal padding */
+.torana-safe-px {
+    padding-left: calc(var(--torana-pillar-width) + 1.25rem);
+    padding-right: calc(var(--torana-pillar-width) + 1.25rem);
+}
+
+/* ═══════════ Interactive Cards & Elements ═══════════ */
+.domain-card {
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.domain-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.22);
+}
+
+.step-card {
+    transition: all 0.25s ease;
+}
+.step-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-glow);
+    background: rgba(24, 34, 46, 0.9);
+}
+
+.character-card {
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+.character-card:hover {
+    transform: scale(1.04);
+}
+.character-card.active {
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.45);
+    background: rgba(30, 42, 58, 0.9);
+}
+
+/* Team Member Cards */
+.team-member-card {
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.team-member-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+}
+
+/* Badges */
+.pixel-badge {
+    font-family: 'PixelifySans', monospace;
+    font-size: 11px;
+    background: rgba(217, 119, 6, 0.15);
+    color: var(--gold-bright);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    padding: 3px 8px;
+    letter-spacing: 0.05em;
+}
+
+/* Navigation bar - Transparent */
+.portal-nav {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.15);
+    box-shadow: none !important;
+}
+
+.portal-nav-link {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 13px;
+    color: #d1d5db;
+    transition: color 0.2s ease;
+    text-decoration: none;
+}
+.portal-nav-link:hover {
+    color: var(--gold-bright);
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+/* Ambient glow orb */
+.ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(90px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cloud-fg-left, .cloud-fg-right {
+        width: 75%;
+    }
+    .cloud-transition-stage {
+        margin-top: -60px;
+        margin-bottom: -20px;
+    }
+}

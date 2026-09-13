@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dharohar 1.0 — Ancient Nalanda Mahavihara Web Portal</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Google Fonts Fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#070a0e] text-[#f3ede2] antialiased overflow-x-hidden selection:bg-amber-500 selection:text-black">
+
+    <!-- ═══════════════════ FIRST LOADING SCREEN (INITIAL.MP4 VIDEO INTRO) ═══════════════════ -->
+    <div id="video-loading-screen" class="fixed inset-0 z-[9999] bg-[#070a0e] flex flex-col items-center justify-center transition-opacity duration-700">
+        <!-- Background Ambient Video Player -->
+        <div class="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-black">
+            <video id="loading-video" autoplay muted playsinline class="w-full h-full object-contain sm:object-cover">
+                <source src="assets/initial.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#070a0e] via-transparent to-[#070a0e]/70"></div>
+        </div>
+
+        <!-- Top Header & Skip Button -->
+        <div class="absolute top-6 left-6 right-6 z-20 flex items-center justify-between pointer-events-auto">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/ui/temple.svg" class="h-6 w-6 filter-saffron" alt="">
+                <span class="font-heading font-bold text-lg text-white uppercase tracking-wider">
+                    Dharohar <span class="text-amber-400 font-pixel">1.0</span>
+                </span>
+            </div>
+            <button id="skip-intro-btn" onclick="dismissLoadingScreen()" class="pixel-btn-secondary !py-1.5 !px-3 text-xs tracking-wider">
+                <span>Skip Intro</span>
+                <i class="fas fa-forward-step text-[10px]"></i>
+            </button>
+        </div>
+
+        <!-- Center Atmospheric Crest -->
+        <!-- <div class="relative z-10 text-center pointer-events-none px-4 mb-16">
+            <img src="assets/ui/lotus.svg" class="h-10 w-10 filter-saffron mx-auto mb-3 opacity-90 animate-pulse" alt="">
+            <h2 class="font-heading font-bold text-3xl sm:text-5xl text-white uppercase tracking-widest text-gold-glow">
+                DHAROHAR
+            </h2>
+            <p class="font-pixel text-xs sm:text-sm text-amber-300 tracking-[0.3em] uppercase mt-1">
+                Entering Ancient Nalanda Mahavihara
+            </p>
+        </div> -->
+
+        <!-- Bottom Loading Status & Progress Bar -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-11/12 max-w-md text-center">
+            <div class="flex items-center justify-between text-xs font-pixel text-amber-300 mb-2">
+                <span id="loading-status-text" class="tracking-widest uppercase">Initializing Portal...</span>
+                <span id="loading-percent" class="text-amber-400 font-bold">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-black/80 border border-amber-500/50 p-0.5 pixel-box-sm">
+                <div id="loading-progress-bar" class="h-full bg-gradient-to-r from-amber-600 via-amber-400 to-amber-300 transition-all duration-200 w-0"></div>
+            </div>
+            <p class="text-[10px] font-pixel text-gray-400 mt-2 tracking-wider">
+                Press [Space] or click Skip to enter immediately
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ NALANDA TORANA PILLARS (LEFT & RIGHT) ═══════════════════ -->
+    <div class="torana-pillar-left" aria-hidden="true">
+        <img src="assets/ui/pillar_left.svg" class="w-full h-full object-fill" alt="Left Pillar">
+    </div>
+    <div class="torana-pillar-right" aria-hidden="true">
+        <img src="assets/ui/pillar_right.svg" class="w-full h-full object-fill" alt="Right Pillar">
+    </div>
+
+    <!-- ═══════════════════ TORANA CONNECTING BEAM NAVBAR ═══════════════════ -->
+    <header class="torana-beam-nav">
+        <div class="max-w-7xl mx-auto torana-safe-px h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <img src="assets/ui/temple.svg" class="h-8 w-8 filter-saffron group-hover:scale-110 transition-transform" alt="Dharohar Temple Logo">
+                <div class="flex flex-col">
+                    <span class="font-heading font-bold text-2xl tracking-wider text-white uppercase group-hover:text-amber-400 transition-colors">
+                        Dharohar <span class="text-amber-400 font-pixel text-xl">1.0</span>
+                    </span>
+                    <span class="font-pixel text-[10px] text-amber-500/80 tracking-widest uppercase">Nalanda Mahavihara</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="portal-nav-link">Portal</a>
+                <a href="#experience" class="portal-nav-link">The Experience</a>
+                <a href="#features" class="portal-nav-link">Domains & Quests</a>
+                <a href="#credits" class="portal-nav-link">Credits & Team</a>
+            </nav>
+
+            <!-- Nav Action & Audio Control -->
+            <div class="flex items-center gap-3">
+                <button id="bg-audio-toggle" title="Toggle Nalanda Ambience" class="pixel-box-sm w-10 h-10 flex items-center justify-center text-amber-400 hover:text-white transition-colors" aria-label="Toggle Sound">
+                    <i class="fas fa-volume-xmark text-sm" id="audio-icon"></i>
+                </button>
+                <a href="#download-card" class="pixel-btn-primary !py-2 !px-4 text-xs">
+                    <i class="fas fa-download text-xs"></i>
+                    <span>Get .EXE</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-amber-400 text-xl p-2" aria-label="Open Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0a0f16]/95 border-b border-amber-500/20 px-6 py-4 flex flex-col gap-3">
+            <a href="#hero" class="portal-nav-link py-2 border-b border-white/5">Portal</a>
+            <a href="#experience" class="portal-nav-link py-2 border-b border-white/5">The Experience</a>
+            <a href="#features" class="portal-nav-link py-2 border-b border-white/5">Domains & Quests</a>
+            <a href="#credits" class="portal-nav-link py-2 border-b border-white/5">Credits & Team</a>
+        </div>
+    </header>
+
+
+    <!-- ═══════════════════ SECTION 1: HERO & DOWNLOAD PORTAL ═══════════════════ -->
+    <section id="hero" class="relative min-h-screen flex flex-col justify-between pt-28 pb-16 overflow-hidden">
+        <!-- Background Hero Image (intro_image.png) -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img id="hero-image" src="assets/intro_image.png" alt="Ancient Nalanda Mahavihara Landscape" class="w-full h-full object-cover object-center" style="filter: brightness(0.85) saturate(1.15);">
+            <!-- Gradient Overlay for Contrast & Text Readability -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#070a0e]/60 via-[#070a0e]/20 to-[#070a0e]/85 pointer-events-none"></div>
+            <div class="ambient-glow w-[600px] h-[600px] bg-amber-500/10 top-1/4 left-1/2 -translate-x-1/2 pointer-events-none"></div>
+        </div>
+
+        <!-- Main Hero Title & Banner Content -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center my-auto pt-6 pb-12 sm:pb-16">
+            <!-- Ancient Subtitle Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-5 pixel-box-sm">
+                <img src="assets/ui/lotus.svg" class="h-4 w-4 filter-saffron" alt="">
+                <span class="font-pixel text-xs text-amber-300 uppercase tracking-widest">
+                    Ancient Indian Knowledge Systems RPG
+                </span>
+                <img src="assets/ui/lotus.svg" class="h-4 w-4 filter-saffron" alt="">
+            </div>
+
+            <!-- Main Title Banner in Bold Pixelify / Oswald -->
+            <h1 class="font-heading font-bold text-6xl sm:text-7xl md:text-9xl tracking-tight text-white uppercase leading-none text-gold-glow mb-4">
+                DHAROHAR
+            </h1>
+            <p class="font-pixel text-base sm:text-xl md:text-2xl text-amber-400 tracking-[0.25em] uppercase mb-6 font-semibold">
+                A Journey Through Indian Heritage
+            </p>
+
+            <p class="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+                Dharohar 1.0 is an immersive 2D educational RPG built with Godot Engine 4.x, designed to celebrate and preserve ancient Indian knowledge systems, culture, and heritage through interactive gameplay, domain-specific cutscenes, historical knowledge quizzes, and intellectual puzzle.
+
+            <!-- Download Action Card -->
+            <div id="download-card" class="max-w-2xl mx-auto pixel-box p-6 sm:p-8 text-center relative">
+                <!-- Golden Corner Ornaments -->
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-amber-400"></div>
+                <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-amber-400"></div>
+                <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-amber-400"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-amber-400"></div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+                    <!-- Primary CTA -->
+                    <button onclick="openDownloadModal()" class="pixel-btn-primary w-full sm:w-auto text-base sm:text-lg">
+                        <i class="fas fa-download text-lg"></i>
+                        <span>Download Dharohar 1.0 (.exe)</span>
+                    </button>
+
+                    <!-- Secondary CTA -->
+                    <a href="#experience" class="pixel-btn-secondary w-full sm:w-auto text-sm sm:text-base">
+                        <i class="fas fa-compass"></i>
+                        <span>Explore Nalanda Map</span>
+                    </a>
+                </div>
+
+                <!-- Subtitle / System Specs -->
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-amber-200/80 font-pixel pt-2 border-t border-amber-500/20">
+                    <span><i class="fab fa-windows text-amber-400 mr-1"></i> Windows 64-bit Standalone</span>
+                    <span class="text-amber-500/40">•</span>
+                    <span><i class="fas fa-gamepad text-amber-400 mr-1"></i> Built on Godot Engine 4.x</span>
+                    <span class="text-amber-500/40">•</span>
+                    <span><i class="fas fa-shield-halved text-amber-400 mr-1"></i> No Install Required</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ SECTION 2: THE NALANDA EXPERIENCE & EXPERIENTIAL LEARNING ═══════════════════ -->
+    <section id="experience" class="relative py-20 torana-safe-px bg-[#090e15] border-t border-amber-900/30">
+        <!-- Ambient background glow -->
+        <div class="ambient-glow w-[800px] h-[800px] bg-amber-600/5 top-1/3 right-0"></div>
+        <div class="ambient-glow w-[600px] h-[600px] bg-red-900/5 bottom-1/4 left-0"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+
+            <!-- Section Title -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-3">
+                    <img src="assets/ui/lotus.svg" class="h-6 w-6 filter-saffron opacity-80" alt="">
+                    <span class="font-pixel text-xs text-amber-400 tracking-widest uppercase">Ancient Pedagogical Architecture</span>
+                    <img src="assets/ui/lotus.svg" class="h-6 w-6 filter-saffron opacity-80" alt="">
+                </div>
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-wider text-gold-glow">
+                    The Nalanda Experience
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto mt-4 font-normal">
+                    Reconnecting learners with India's civilisational heritage through interactive discovery rather than passive memorisation.
+                </p>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-6"></div>
+            </div>
+
+            <!-- ── 1. Core Philosophy Showcase: The Learning Loop ── -->
+            <div class="pixel-box p-6 sm:p-10 mb-20">
+                <div class="text-center mb-8">
+                    <span class="font-pixel text-xs text-amber-400 uppercase tracking-widest">Our Core Philosophy</span>
+                    <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white uppercase tracking-wide mt-1">
+                        The 5-Stage Learning Loop
+                    </h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mt-2">
+                        How Dharohar translates ancient knowledge traditions into engaging modern gameplay.
+                    </p>
+                </div>
+
+                <!-- 5 Interactive Steps Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <!-- Step 1: Explore -->
+                    <div class="step-card pixel-box-sm p-5 flex flex-col items-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-400 flex items-center justify-center text-amber-400 text-lg mb-3">
+                            <i class="fas fa-shoe-prints"></i>
+                        </div>
+                        <span class="font-pixel text-[11px] text-amber-500 font-bold uppercase tracking-wider">Step 01</span>
+                        <h4 class="font-heading font-bold text-lg text-white uppercase mt-1">Explore</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+                            Walk historically inspired 2D pixel-art recreations of ancient Nalanda stupas, viharas, and courtyards.
+                        </p>
+                    </div>
+
+                    <!-- Step 2: Discover -->
+                    <div class="step-card pixel-box-sm p-5 flex flex-col items-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-400 flex items-center justify-center text-amber-400 text-lg mb-3">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <span class="font-pixel text-[11px] text-amber-500 font-bold uppercase tracking-wider">Step 02</span>
+                        <h4 class="font-heading font-bold text-lg text-white uppercase mt-1">Discover</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+                            Examine ancient palm-leaf manuscripts, structural monuments, and historical artefacts via building prompts.
+                        </p>
+                    </div>
+
+                    <!-- Step 3: Learn -->
+                    <div class="step-card pixel-box-sm p-5 flex flex-col items-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-400 flex items-center justify-center text-amber-400 text-lg mb-3">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-pixel text-[11px] text-amber-500 font-bold uppercase tracking-wider">Step 03</span>
+                        <h4 class="font-heading font-bold text-lg text-white uppercase mt-1">Learn</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+                            Engage in rich dialogue with historic scholars like Teacher Silabhadra and itinerant traders.
+                        </p>
+                    </div>
+
+                    <!-- Step 4: Think -->
+                    <div class="step-card pixel-box-sm p-5 flex flex-col items-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-400 flex items-center justify-center text-amber-400 text-lg mb-3">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="font-pixel text-[11px] text-amber-500 font-bold uppercase tracking-wider">Step 04</span>
+                        <h4 class="font-heading font-bold text-lg text-white uppercase mt-1">Think</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+                            Contemplate foundational scientific theories and philosophical dilemmas from the Nyaya and Vedic schools.
+                        </p>
+                    </div>
+
+                    <!-- Step 5: Solve -->
+                    <div class="step-card pixel-box-sm p-5 flex flex-col items-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-400 flex items-center justify-center text-amber-400 text-lg mb-3">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <span class="font-pixel text-[11px] text-amber-500 font-bold uppercase tracking-wider">Step 05</span>
+                        <h4 class="font-heading font-bold text-lg text-white uppercase mt-1">Solve</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+                            Apply acquired knowledge through interactive domain puzzles to earn intellectual passage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 2. Interactive Feature Cards (Dharohar Aesthetics) ── -->
+            <div id="features" class="space-y-16">
+
+                <!-- Feature 1: Experiential Heritage & Nalanda Map Exploration -->
+                <div class="pixel-box p-6 sm:p-10 flex flex-col lg:flex-row items-center gap-10">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <div class="inline-flex items-center gap-2 mb-3">
+                            <span class="pixel-badge">Interactive Environment</span>
+                            <span class="font-pixel text-xs text-amber-400">2D Pixel Exploration</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-3xl sm:text-4xl text-white uppercase tracking-wide mb-4">
+                            Experiential Heritage Exploration
+                        </h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Rather than reading bullet points from a textbook, players traverse an authentic 2D pixel-art reconstruction of the Nalanda complex. Approach ancient stupas, meditation cells, and lecture halls to activate the <span class="text-amber-400 font-pixel font-bold">[ i ]</span> Information Prompt.
+                        </p>
+                        
+                        <!-- Mini In-game Feature Highlights -->
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="pixel-box-sm p-3 flex items-center gap-3">
+                                <i class="fas fa-monument text-amber-400 text-lg"></i>
+                                <div>
+                                    <div class="text-white text-xs font-bold font-heading">Stupa Triggers</div>
+                                    <div class="text-[11px] text-gray-400 font-pixel">Architectural Lore</div>
+                                </div>
+                            </div>
+                            <div class="pixel-box-sm p-3 flex items-center gap-3">
+                                <i class="fas fa-book-open text-amber-400 text-lg"></i>
+                                <div>
+                                    <div class="text-white text-xs font-bold font-heading">Dharmaganja</div>
+                                    <div class="text-[11px] text-gray-400 font-pixel">Great Library Texts</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#download-card" class="pixel-btn-secondary self-start text-xs">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Play Map in Game</span>
+                        </a>
+                    </div>
+
+                    <!-- Interactive Map Preview Frame -->
+                    <div class="lg:w-1/2 w-full relative group">
+                        <div class="pixel-box-sm p-2 bg-black overflow-hidden relative">
+                            <img src="assets/maps/nalanda_map.png" class="w-full h-72 sm:h-88 object-cover pixel-art group-hover:scale-105 transition-transform duration-500" alt="Nalanda Map Recreation">
+                            
+                            <!-- Overlay Interactive HUD Pin -->
+                            <div class="absolute top-4 left-4 pixel-box-sm bg-black/80 px-3 py-1.5 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span class="font-pixel text-[11px] text-amber-300 uppercase">Nalanda University Complex</span>
+                            </div>
+
+                            <!-- Interactive Building Information Box Preview -->
+                            <div class="absolute bottom-4 left-4 right-4 pixel-box-sm bg-black/90 p-3 border-amber-400/50">
+                                <div class="flex items-center justify-between text-xs text-amber-400 font-pixel font-bold mb-1">
+                                    <span>[ i ] MONUMENT INFO: SARIPUTTA STUPA</span>
+                                    <span class="text-[10px] text-gray-400">Press 'E' to interact</span>
+                                </div>
+                                <p class="text-[11px] text-gray-300 leading-snug">
+                                    Dedicated to the foremost disciple of Buddha. Features multiple superimposed terracotta structural layers spanning the Gupta to Pala dynasties.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Academic Domains (4 Core Domains) -->
+                <div>
+                    <div class="text-center mb-10">
+                        <span class="font-pixel text-xs text-amber-400 uppercase tracking-widest">Ancient Indian Knowledge Systems</span>
+                        <h3 class="font-heading font-bold text-3xl sm:text-4xl text-white uppercase tracking-wide mt-1">
+                            4 Core Academic Domains in Nalanda
+                        </h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                            Master domain-specific challenges inspired by actual ancient texts, formulas, and celestial treatises.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                        <!-- Domain 1: Mathematics -->
+                        <div class="domain-card pixel-box p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">📐</span>
+                                    <span class="pixel-badge">Sulba Sutras</span>
+                                </div>
+                                <h4 class="font-heading font-bold text-2xl text-amber-400 uppercase tracking-wide mb-2">Mathematics</h4>
+                                <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                    Vedic computational patterns, place value, zero concept, and algorithm tiles designed to unlock ancient treasury locks.
+                                </p>
+                            </div>
+                            <!-- Pixel Assets Preview -->
+                            <div class="pt-4 border-t border-amber-500/20">
+                                <div class="font-pixel text-[10px] text-amber-300/70 mb-2 uppercase">In-Game Tiles:</div>
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <img src="assets/puzzles/math/0.png" class="w-8 h-8 pixel-art pixel-box-sm p-0.5" alt="0">
+                                    <img src="assets/puzzles/math/1.png" class="w-8 h-8 pixel-art pixel-box-sm p-0.5" alt="1">
+                                    <img src="assets/puzzles/math/plus.png" class="w-8 h-8 pixel-art pixel-box-sm p-0.5" alt="+">
+                                    <img src="assets/puzzles/math/9.png" class="w-8 h-8 pixel-art pixel-box-sm p-0.5" alt="9">
+                                    <img src="assets/puzzles/math/equals.png" class="w-8 h-8 pixel-art pixel-box-sm p-0.5" alt="=">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domain 2: Astronomy -->
+                        <div class="domain-card pixel-box p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">✨</span>
+                                    <span class="pixel-badge">Aryabhatiya</span>
+                                </div>
+                                <h4 class="font-heading font-bold text-2xl text-amber-400 uppercase tracking-wide mb-2">Astronomy</h4>
+                                <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                    Align the night sky constellations: Saptarishi, Scholar's Arc, and the Zenith Diamond according to Aryabhata's celestial sphere.
+                                </p>
+                            </div>
+                            <!-- Pixel Assets Preview -->
+                            <div class="pt-4 border-t border-amber-500/20">
+                                <div class="font-pixel text-[10px] text-amber-300/70 mb-2 uppercase">Star Formations:</div>
+                                <div class="flex gap-2 items-center pixel-box-sm p-1.5 bg-black/40">
+                                    <img src="assets/puzzles/astronomy/star_bright.png" class="w-7 h-7 pixel-art animate-pulse" alt="Bright Star">
+                                    <i class="fas fa-arrow-right text-[10px] text-amber-500"></i>
+                                    <img src="assets/puzzles/astronomy/star_selected.png" class="w-7 h-7 pixel-art" alt="Selected Star">
+                                    <i class="fas fa-arrow-right text-[10px] text-amber-500"></i>
+                                    <img src="assets/puzzles/astronomy/star_medium.png" class="w-7 h-7 pixel-art" alt="Medium Star">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domain 3: Medicine -->
+                        <div class="domain-card pixel-box p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">🌿</span>
+                                    <span class="pixel-badge">Charaka Samhita</span>
+                                </div>
+                                <h4 class="font-heading font-bold text-2xl text-amber-400 uppercase tracking-wide mb-2">Medicine</h4>
+                                <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                    Ayurvedic diagnostic methodology. Formulate remedies from authentic medicinal herbs to cure ailing pilgrims and students.
+                                </p>
+                            </div>
+                            <!-- Pixel Assets Preview -->
+                            <div class="pt-4 border-t border-amber-500/20">
+                                <div class="font-pixel text-[10px] text-amber-300/70 mb-2 uppercase">Herbal Remedies:</div>
+                                <div class="grid grid-cols-3 gap-1.5 text-center text-[9px] text-gray-300 font-pixel">
+                                    <div class="pixel-box-sm p-1"><img src="assets/puzzles/medicine/tulsi.png" class="w-6 h-6 mx-auto pixel-art" alt="Tulsi">Tulsi</div>
+                                    <div class="pixel-box-sm p-1"><img src="assets/puzzles/medicine/neem.png" class="w-6 h-6 mx-auto pixel-art" alt="Neem">Neem</div>
+                                    <div class="pixel-box-sm p-1"><img src="assets/puzzles/medicine/amla.png" class="w-6 h-6 mx-auto pixel-art" alt="Amla">Amla</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domain 4: Philosophy -->
+                        <div class="domain-card pixel-box p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">📜</span>
+                                    <span class="pixel-badge">Nyaya Sutras</span>
+                                </div>
+                                <h4 class="font-heading font-bold text-2xl text-amber-400 uppercase tracking-wide mb-2">Philosophy</h4>
+                                <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                    Dialectical debates evaluating logical reasoning (Tarka) and moral discernment (Cetana) in the monastic debate courtyards.
+                                </p>
+                            </div>
+                            <!-- Pixel Assets Preview -->
+                            <div class="pt-4 border-t border-amber-500/20">
+                                <div class="font-pixel text-[10px] text-amber-300/70 mb-2 uppercase">Scholastic Instruments:</div>
+                                <div class="flex justify-around pixel-box-sm p-1.5 bg-black/40">
+                                    <img src="assets/puzzles/philosophy/ink_pot.png" class="w-7 h-7 pixel-art" title="Ink Pot" alt="Ink Pot">
+                                    <img src="assets/puzzles/philosophy/stylus_icon.png" class="w-7 h-7 pixel-art" title="Stylus" alt="Stylus">
+                                    <img src="assets/puzzles/philosophy/scroll_icon.png" class="w-7 h-7 pixel-art" title="Palm Leaf Scroll" alt="Scroll">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Feature 3: NPC & Quest Mechanics (Interactive Dialogue Simulator) -->
+                <div class="pixel-box p-6 sm:p-10">
+                    <div class="text-center mb-8">
+                        <span class="pixel-badge">Dynamic Quest System</span>
+                        <h3 class="font-heading font-bold text-3xl text-white uppercase tracking-wide mt-2">
+                            Interactive NPC Dialogue & Quest Mechanics
+                        </h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mt-1 max-w-xl mx-auto">
+                            Click on historical figures to preview their in-game role, entrance quizzes, and philosophical counsel.
+                        </p>
+                    </div>
+
+                    <!-- Character Selector Tabs -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                        <!-- Silabhadra -->
+                        <div class="character-card pixel-box-sm p-4 flex flex-col items-center text-center active" onclick="switchNpc('silabhadra', this)">
+                            <img src="assets/characters/guruji.png" class="h-16 pixel-art mb-2" alt="Teacher Silabhadra">
+                            <span class="font-heading font-bold text-sm text-white">T. Silabhadra</span>
+                            <span class="text-[10px] font-pixel text-amber-400">Head Abbot</span>
+                        </div>
+
+                        <!-- Monk Bhikshu -->
+                        <div class="character-card pixel-box-sm p-4 flex flex-col items-center text-center" onclick="switchNpc('bhikshu', this)">
+                            <img src="assets/characters/bhikshu.png" class="h-16 pixel-art mb-2" alt="Monk Bhikshu">
+                            <span class="font-heading font-bold text-sm text-white">Monk Bhikshu</span>
+                            <span class="text-[10px] font-pixel text-amber-400">Librarian</span>
+                        </div>
+
+                        <!-- Merchant -->
+                        <div class="character-card pixel-box-sm p-4 flex flex-col items-center text-center" onclick="switchNpc('merchant', this)">
+                            <img src="assets/characters/merchant.png" class="h-16 pixel-art mb-2" alt="Merchant">
+                            <span class="font-heading font-bold text-sm text-white">Merchant</span>
+                            <span class="text-[10px] font-pixel text-amber-400">Gate Examiner</span>
+                        </div>
+
+                        <!-- Scholar / Scribe -->
+                        <div class="character-card pixel-box-sm p-4 flex flex-col items-center text-center" onclick="switchNpc('scholar', this)">
+                            <img src="assets/characters/scholar.png" class="h-16 pixel-art mb-2" alt="Scholar Disciple">
+                            <span class="font-heading font-bold text-sm text-white">Scholar Disciple</span>
+                            <span class="text-[10px] font-pixel text-amber-400">Manuscript Scribe</span>
+                        </div>
+                    </div>
+
+                    <!-- In-Game Dialogue Box Simulation -->
+                    <div class="pixel-box-sm p-6 bg-black/70 border-2 border-amber-500/60 relative">
+                        <div class="flex items-center gap-3 mb-3 border-b border-amber-500/20 pb-2">
+                            <i class="fas fa-comment-dots text-amber-400 text-sm"></i>
+                            <span id="npc-name" class="font-heading font-bold text-base text-amber-400 uppercase tracking-wide">Teacher Silabhadra (Abbot of Nalanda)</span>
+                            <span id="npc-tag" class="ml-auto font-pixel text-[11px] text-amber-200/60">[Domain Gatekeeper]</span>
+                        </div>
+
+                        <p id="npc-dialogue" class="font-pixel text-xs sm:text-sm text-gray-200 leading-relaxed min-h-[55px]">
+                            "Welcome, earnest seeker. Nalanda does not grant entry to unexamined minds. Before you step past these monastery gates, demonstrate your understanding of the Vedic numerical foundations."
+                        </p>
+
+                        <div class="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-gray-400 font-pixel">
+                            <div class="flex items-center gap-2">
+                                <span class="text-amber-400"><i class="fas fa-keyboard mr-1"></i> [E]</span> Advance Dialogue
+                                <span class="text-amber-400 ml-3"><i class="fas fa-arrow-pointer mr-1"></i> [Click]</span> Select Answer
+                            </div>
+                            <span class="text-amber-500">Quest: The Nalanda Entrance Examination</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 4. Future Eras Teaser Banner ("Coming Soon") ── -->
+                <div class="pixel-box p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-[#121a24] via-[#1a2533] to-[#121a24] text-center">
+                    <div class="ambient-glow w-[400px] h-[400px] bg-amber-500/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                    
+                    <div class="relative z-10 max-w-3xl mx-auto">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 pixel-badge mb-4">
+                            <i class="fas fa-hourglass-half text-amber-400"></i>
+                            <span>Dharohar Expansion Roadmap</span>
+                        </div>
+                        
+                        <h3 class="font-heading font-bold text-3xl sm:text-5xl text-white uppercase tracking-wider text-gold-glow mb-4">
+                            More Historical Eras & Knowledge Hubs Coming Soon
+                        </h3>
+                        
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
+                            Nalanda is our inaugural foundation. The Dharohar universe is expanding to encompass ancient India's foremost regional seats of science, governance, and monumental engineering.
+                        </p>
+
+                        <!-- Expansion Sites Grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left mb-6">
+                            <div class="pixel-box-sm p-3 bg-black/50">
+                                <div class="font-heading font-bold text-sm text-amber-400">Takshashila</div>
+                                <div class="font-pixel text-[10px] text-gray-400">Ancient Gandhara • Chanakya's Statecraft</div>
+                            </div>
+                            <div class="pixel-box-sm p-3 bg-black/50">
+                                <div class="font-heading font-bold text-sm text-amber-400">Ujjain Observatory</div>
+                                <div class="font-pixel text-[10px] text-gray-400">Varahamihira • Prime Astronomical Meridian</div>
+                            </div>
+                            <div class="pixel-box-sm p-3 bg-black/50">
+                                <div class="font-heading font-bold text-sm text-amber-400">Thanjavur</div>
+                                <div class="font-pixel text-[10px] text-gray-400">Chola Maritime Navigation & Temple Engineering</div>
+                            </div>
+                            <div class="pixel-box-sm p-3 bg-black/50">
+                                <div class="font-heading font-bold text-sm text-amber-400">Hampi Vijayanagara</div>
+                                <div class="font-pixel text-[10px] text-gray-400">Urban Hydraulics & Stone Architectural Acoustics</div>
+                            </div>
+                        </div>
+
+                        <span class="font-pixel text-xs text-amber-400/80 tracking-widest uppercase">
+                            [Free Updates Included with Dharohar 1.0 Architecture]
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ SECTION 3: CREDITS & TEAM HUB ═══════════════════ -->
+    <section id="credits" class="relative py-20 torana-safe-px bg-[#070a0e] border-t border-amber-900/30">
+        <!-- Ambient Glow -->
+        <div class="ambient-glow w-[700px] h-[700px] bg-amber-500/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+
+            <!-- Section Title -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-3">
+                    <img src="assets/ui/temple.svg" class="h-6 w-6 filter-saffron opacity-80" alt="">
+                    <span class="font-pixel text-xs text-amber-400 tracking-widest uppercase">Makers & Contributors</span>
+                    <img src="assets/ui/temple.svg" class="h-6 w-6 filter-saffron opacity-80" alt="">
+                </div>
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-wider text-gold-glow">
+                    Credits & Team Hub
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mt-4 font-normal">
+                    Crafted with pride by students passionate about history, culture, and interactive educational technology.
+                </p>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-6"></div>
+            </div>
+
+            <!-- Team Roster Grid: All 6 Core Team Members -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+
+                <!-- 1. Prisha Saxena -->
+                <div class="team-member-card pixel-box p-6 flex flex-col justify-between">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 pixel-box-sm bg-black/60 flex items-center justify-center shrink-0">
+                            <img src="assets/characters/scholar.png" class="h-12 pixel-art" alt="Prisha Saxena Avatar">
+                        </div>
+                        <div>
+                            <span class="pixel-badge text-[10px]">Game Design & Research</span>
+                            <h4 class="font-heading font-bold text-xl text-white uppercase tracking-wide mt-1">Prisha Saxena</h4>
+                            <p class="font-pixel text-xs text-amber-400">Core Team Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                        Conducted deep historical research on Nalanda's monastic curriculum, conceptualised experiential storytelling loops, and designed educational game scenarios.
+                    </p>
+                    <div class="flex gap-1.5 flex-wrap pt-3 border-t border-amber-500/20 text-[10px] font-pixel text-amber-300">
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Heritage Research</span>
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Narrative Design</span>
+                    </div>
+                </div>
+
+                <!-- 2. Pushpendra Kumar Verma -->
+                <div class="team-member-card pixel-box p-6 flex flex-col justify-between">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 pixel-box-sm bg-black/60 flex items-center justify-center shrink-0">
+                            <img src="assets/characters/guruji.png" class="h-12 pixel-art" alt="Pushpendra Kumar Verma Avatar">
+                        </div>
+                        <div>
+                            <span class="pixel-badge text-[10px]">Engine Architecture</span>
+                            <h4 class="font-heading font-bold text-xl text-white uppercase tracking-wide mt-1">Pushpendra K. Verma</h4>
+                            <p class="font-pixel text-xs text-amber-400">Core Team Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                        Engineered the Godot 4.x runtime environment, kinematic player movement physics, collision boundaries, and scene transition management.
+                    </p>
+                    <div class="flex gap-1.5 flex-wrap pt-3 border-t border-amber-500/20 text-[10px] font-pixel text-amber-300">
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Godot Engine 4.x</span>
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Jolt Physics 2D</span>
+                    </div>
+                </div>
+
+                <!-- 3. Raj Kumar Rana -->
+                <div class="team-member-card pixel-box p-6 flex flex-col justify-between">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 pixel-box-sm bg-black/60 flex items-center justify-center shrink-0">
+                            <img src="assets/characters/merchant.png" class="h-12 pixel-art" alt="Raj Kumar Rana Avatar">
+                        </div>
+                        <div>
+                            <span class="pixel-badge text-[10px]">UI/UX & Audio</span>
+                            <h4 class="font-heading font-bold text-xl text-white uppercase tracking-wide mt-1">Raj Kumar Rana</h4>
+                            <p class="font-pixel text-xs text-amber-400">Core Team Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                        Crafted the ancient parchment UI themes, button animations, Escape Sequence panels, and traditional classical Indian ambient soundscapes.
+                    </p>
+                    <div class="flex gap-1.5 flex-wrap pt-3 border-t border-amber-500/20 text-[10px] font-pixel text-amber-300">
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Pixel UI/UX</span>
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Audio Integration</span>
+                    </div>
+                </div>
+
+                <!-- 4. Shiv Bharadwaj -->
+                <div class="team-member-card pixel-box p-6 flex flex-col justify-between">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 pixel-box-sm bg-black/60 flex items-center justify-center shrink-0">
+                            <img src="assets/characters/bhikshu.png" class="h-12 pixel-art" alt="Shiv Bharadwaj Avatar">
+                        </div>
+                        <div>
+                            <span class="pixel-badge text-[10px]">GDScript & Cutscenes</span>
+                            <h4 class="font-heading font-bold text-xl text-white uppercase tracking-wide mt-1">Shiv Bharadwaj</h4>
+                            <p class="font-pixel text-xs text-amber-400">Core Team Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                        Developed the cinematic video cutscene orchestration system, automatic stream redirection, skip handlers, and NPC state machines in GDScript.
+                    </p>
+                    <div class="flex gap-1.5 flex-wrap pt-3 border-t border-amber-500/20 text-[10px] font-pixel text-amber-300">
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">GDScript Strict</span>
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Cutscene Director</span>
+                    </div>
+                </div>
+
+                <!-- 5. Pratham Agarwal -->
+                <div class="team-member-card pixel-box p-6 flex flex-col justify-between">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 pixel-box-sm bg-black/60 flex items-center justify-center shrink-0">
+                            <img src="assets/characters/scribe.png" class="h-12 pixel-art" alt="Pratham Agarwal Avatar">
+                        </div>
+                        <div>
+                            <span class="pixel-badge text-[10px]">Level Art & Tilesets</span>
+                            <h4 class="font-heading font-bold text-xl text-white uppercase tracking-wide mt-1">Pratham Agarwal</h4>
+                            <p class="font-pixel text-xs text-amber-400">Core Team Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                        Reconstructed the tilemap geography of ancient Nalanda University, monastic corridors, brick stupa elevations, and water reservoirs.
+                    </p>
+                    <div class="flex gap-1.5 flex-wrap pt-3 border-t border-amber-500/20 text-[10px] font-pixel text-amber-300">
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Level Design</span>
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Tilemap Art</span>
+                    </div>
+                </div>
+
+                <!-- 6. Devansh Dwivedi -->
+                <div class="team-member-card pixel-box p-6 flex flex-col justify-between">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 pixel-box-sm bg-black/60 flex items-center justify-center shrink-0">
+                            <img src="assets/characters/player.png" class="h-12 pixel-art" alt="Devansh Dwivedi Avatar">
+                        </div>
+                        <div>
+                            <span class="pixel-badge text-[10px]">Puzzles & Fullstack</span>
+                            <h4 class="font-heading font-bold text-xl text-white uppercase tracking-wide mt-1">Devansh Dwivedi</h4>
+                            <p class="font-pixel text-xs text-amber-400">Core Team Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                        Programmed the domain puzzle logic (Mathematics, Astronomy constellations, Medicine diagnoses, Philosophy) and built the interactive web portal.
+                    </p>
+                    <div class="flex gap-1.5 flex-wrap pt-3 border-t border-amber-500/20 text-[10px] font-pixel text-amber-300">
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Puzzle Mechanics</span>
+                        <span class="bg-amber-950/40 px-2 py-0.5 border border-amber-500/30">Web Architecture</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- In-Game Controls Reference & Acknowledgements -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+
+                <!-- Controls Guide -->
+                <div class="pixel-box p-6 sm:p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-gamepad text-amber-400 text-xl"></i>
+                        <h4 class="font-heading font-bold text-2xl text-white uppercase tracking-wide">
+                            In-Game Controls Reference
+                        </h4>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-6">
+                        Designed for seamless exploration on keyboard and mouse.
+                    </p>
+
+                    <div class="space-y-3 font-pixel text-xs">
+                        <div class="flex items-center justify-between p-2.5 pixel-box-sm bg-black/40">
+                            <span class="text-gray-300">Character Movement</span>
+                            <span class="text-amber-400 font-bold bg-amber-500/10 px-2 py-1 border border-amber-500/30">W / A / S / D  or  Arrow Keys</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 pixel-box-sm bg-black/40">
+                            <span class="text-gray-300">Interact with NPCs & Prompts</span>
+                            <span class="text-amber-400 font-bold bg-amber-500/10 px-2 py-1 border border-amber-500/30">E Key</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 pixel-box-sm bg-black/40">
+                            <span class="text-gray-300">Building & Monument Info</span>
+                            <span class="text-amber-400 font-bold bg-amber-500/10 px-2 py-1 border border-amber-500/30">I Key  /  [ i ] Button</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 pixel-box-sm bg-black/40">
+                            <span class="text-gray-300">Pause & Escape Sequences</span>
+                            <span class="text-amber-400 font-bold bg-amber-500/10 px-2 py-1 border border-amber-500/30">ESC Key</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 pixel-box-sm bg-black/40">
+                            <span class="text-gray-300">Puzzle & UI Selection</span>
+                            <span class="text-amber-400 font-bold bg-amber-500/10 px-2 py-1 border border-amber-500/30">Mouse Left Click</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acknowledgements & Mentors -->
+                <div class="pixel-box p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-landmark text-amber-400 text-xl"></i>
+                            <h4 class="font-heading font-bold text-2xl text-white uppercase tracking-wide">
+                                Acknowledgements & Mentors
+                            </h4>
+                        </div>
+                        <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                            Special gratitude to the mentors, educators, and scholars whose guidance shaped the historical fidelity and pedagogical foundations of Dharohar:
+                        </p>
+
+                        <ul class="space-y-2.5 text-xs text-gray-300 font-pixel mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-amber-400 mt-0.5"></i>
+                                <span><strong>Ancient Indian Knowledge Systems (IKS) Mentors</strong> — For authoritative insights into Vedic mathematics and Charaka pharmacology.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-amber-400 mt-0.5"></i>
+                                <span><strong>Archaeological Survey of India (ASI) Records</strong> — For architectural layouts of Nalanda Temple 3 and Monastery ruins.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-amber-400 mt-0.5"></i>
+                                <span><strong>Godot Engine Open Source Community</strong> — For the exceptional 2D gaming framework and tooling.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Project Documentation Download CTA -->
+                    <div class="p-4 pixel-box-sm bg-amber-500/10 border border-amber-400/40 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <img src="assets/ui/book.png" class="w-8 h-8 pixel-art" alt="Book">
+                            <div>
+                                <div class="font-heading font-bold text-white text-xs uppercase">Dharohar Game Guide.docx</div>
+                                <div class="font-pixel text-[10px] text-amber-300">Complete walkthrough & puzzle keys</div>
+                            </div>
+                        </div>
+                        <a href="../dharohar/Dharohar_Game_Guide.docx" download class="pixel-btn-secondary !py-1.5 !px-3 text-xs">
+                            <i class="fas fa-file-word"></i>
+                            <span>Read Guide</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer & Social Links -->
+            <footer class="pt-10 border-t border-amber-900/40">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                    <!-- Brand recap -->
+                    <div class="flex items-center gap-3">
+                        <img src="assets/ui/temple.svg" class="h-8 w-8 filter-saffron" alt="">
+                        <div>
+                            <span class="font-heading font-bold text-xl text-white tracking-widest uppercase">
+                                DHAROHAR <span class="text-amber-400 font-pixel">1.0</span>
+                            </span>
+                            <div class="font-pixel text-[10px] text-amber-500">सा विद्या या विमुक्तये • That which liberates is knowledge</div>
+                        </div>
+                    </div>
+
+                    <!-- Social / Community Icons -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com" target="_blank" rel="noopener" class="pixel-box-sm w-10 h-10 flex items-center justify-center text-amber-400 hover:text-white transition-colors" title="GitHub Repository">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" class="pixel-box-sm w-10 h-10 flex items-center justify-center text-amber-400 hover:text-white transition-colors" title="Gameplay Showcase">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" class="pixel-box-sm w-10 h-10 flex items-center justify-center text-amber-400 hover:text-white transition-colors" title="Twitter / X">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="#hero" class="pixel-box-sm w-10 h-10 flex items-center justify-center text-amber-400 hover:text-white transition-colors" title="Back to Top">
+                            <i class="fas fa-arrow-up"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 font-pixel pt-4 border-t border-white/5">
+                    <p>&copy; 2026 Dharohar Core Team. All rights reserved. Created for heritage preservation.</p>
+                    <div class="flex gap-4 mt-2 sm:mt-0">
+                        <span>Godot Engine 4.x</span>
+                        <span>•</span>
+                        <span>Open Educational Initiative</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ DOWNLOAD MODAL DIALOG ═══════════════════ -->
+    <div id="download-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="pixel-box max-w-lg w-full p-6 sm:p-8 bg-[#0d131a] relative">
+            <button onclick="closeDownloadModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-xl font-bold font-pixel">
+                ✕
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-amber-500/10 border-2 border-amber-400 mx-auto flex items-center justify-center text-amber-400 text-2xl mb-3">
+                    <i class="fas fa-download animate-bounce"></i>
+                </div>
+                <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white uppercase tracking-wide">
+                    Download Dharohar 1.0
+                </h3>
+                <p class="text-gray-300 font-pixel text-xs mt-1">
+                    Nalanda Mahavihara • Windows 64-bit Standalone Executable
+                </p>
+            </div>
+
+            <!-- Specs Table -->
+            <div class="pixel-box-sm p-4 bg-black/60 space-y-2 text-xs font-pixel mb-6">
+                <div class="flex justify-between text-gray-300">
+                    <span>Package Name:</span>
+                    <span class="text-amber-400 font-bold">Dharohar_1.0_Windows_x64.zip</span>
+                </div>
+                <div class="flex justify-between text-gray-300">
+                    <span>Engine Runtime:</span>
+                    <span class="text-amber-400">Godot Engine 4.x (Standalone)</span>
+                </div>
+                <div class="flex justify-between text-gray-300">
+                    <span>Target OS:</span>
+                    <span class="text-amber-400">Windows 10 / 11 (64-bit)</span>
+                </div>
+                <div class="flex justify-between text-gray-300">
+                    <span>Dependencies:</span>
+                    <span class="text-emerald-400">Self-Contained (0 Installs Required)</span>
+                </div>
+            </div>
+
+            <!-- Download Button Simulation -->
+            <div class="space-y-3">
+                <button onclick="triggerDownloadExe()" class="pixel-btn-primary w-full text-base">
+                    <i class="fas fa-file-zipper"></i>
+                    <span id="dl-btn-text">Download Executable (.zip)</span>
+                </button>
+                <div id="dl-status" class="hidden text-center text-xs font-pixel text-emerald-400 animate-pulse">
+                    <i class="fas fa-check-circle mr-1"></i> Packaging game assets... Download commencing!
+                </div>
+                <button onclick="closeDownloadModal()" class="pixel-btn-secondary w-full text-xs">
+                    Return to Portal
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // ── 0. Video Loading Screen (initial.mp4) Controller ──
+        const loadingScreen = document.getElementById('video-loading-screen');
+        const loadingVideo = document.getElementById('loading-video');
+        const loadingBar = document.getElementById('loading-progress-bar');
+        const loadingPercent = document.getElementById('loading-percent');
+        const loadingStatus = document.getElementById('loading-status-text');
+        let isLoadingDismissed = false;
+
+        // Lock scrolling while loading screen is active
+        document.body.style.overflow = 'hidden';
+
+        if (loadingVideo) {
+            loadingVideo.muted = true;
+            loadingVideo.defaultMuted = true;
+            loadingVideo.playsInline = true;
+        }
+
+        function dismissLoadingScreen() {
+            if (isLoadingDismissed) return;
+            isLoadingDismissed = true;
+
+            if (loadingBar) loadingBar.style.width = '100%';
+            if (loadingPercent) loadingPercent.textContent = '100%';
+            if (loadingStatus) loadingStatus.textContent = 'Portal Ready! Entering...';
+
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    document.body.style.overflow = '';
+                    // Pause intro video to release GPU memory
+                    if (loadingVideo) loadingVideo.pause();
+                    // Refresh GSAP ScrollTrigger for accurate scroll positions
+                    if (typeof ScrollTrigger !== 'undefined') {
+                        ScrollTrigger.refresh();
+                    }
+                }, 750);
+            }
+        }
+
+        if (loadingVideo) {
+            // Update progress bar as video plays
+            loadingVideo.addEventListener('timeupdate', () => {
+                if (!loadingVideo.duration || isLoadingDismissed) return;
+                const progress = Math.min(100, Math.round((loadingVideo.currentTime / loadingVideo.duration) * 100));
+                if (loadingBar) loadingBar.style.width = progress + '%';
+                if (loadingPercent) loadingPercent.textContent = progress + '%';
+                if (progress > 97) {
+                    dismissLoadingScreen();
+                }
+            });
+
+            // Automatically dismiss when video completes
+            loadingVideo.addEventListener('ended', () => {
+                dismissLoadingScreen();
+            });
+
+            // Try autoplay
+            loadingVideo.play().catch(() => {
+                // If browser blocks autoplay, run smooth simulated fallback progress
+                let simulated = 0;
+                const simInterval = setInterval(() => {
+                    simulated += 20;
+                    if (loadingBar) loadingBar.style.width = simulated + '%';
+                    if (loadingPercent) loadingPercent.textContent = simulated + '%';
+                    if (simulated >= 100) {
+                        clearInterval(simInterval);
+                        dismissLoadingScreen();
+                    }
+                }, 250);
+            });
+        }
+
+        // Allow Space or Esc to skip intro
+        window.addEventListener('keydown', (e) => {
+            if (!isLoadingDismissed && (e.code === 'Space' || e.code === 'Escape' || e.key === 'Enter')) {
+                dismissLoadingScreen();
+            }
+        });
+
+        // Maximum fallback safety timer (8 seconds)
+        setTimeout(() => {
+            if (!isLoadingDismissed) {
+                dismissLoadingScreen();
+            }
+        }, 8000);
+
+        // ── 1. NPC Dialogue Simulator Data & Logic ──
+        const npcData = {
+            silabhadra: {
+                name: "Teacher Silabhadra (Abbot of Nalanda)",
+                tag: "[Domain Gatekeeper]",
+                dialogue: '"Welcome, earnest seeker. Nalanda does not grant entry to unexamined minds. Before you step past these monastery gates, demonstrate your understanding of the Vedic numerical foundations."'
+            },
+            bhikshu: {
+                name: "Monk Bhikshu (Librarian of Dharmaganja)",
+                tag: "[Manuscript Custodian]",
+                dialogue: '"Within the nine-storey Ratnodadhi library lie thousands of birch-bark treatises saved from across the world. Treat every palm leaf with reverence; knowledge forgotten is civilisation lost."'
+            },
+            merchant: {
+                name: "Travelling Merchant (Pataliputra Caravans)",
+                tag: "[Outer Court Examiner]",
+                dialogue: '"I bring spices, lapis lazuli, and astronomical charts from the western seas. But the gatekeeper demands I answer three historical riddles before trading within the University walls!"'
+            },
+            scholar: {
+                name: "Scholar Disciple (Grammar & Logic)",
+                tag: "[Manuscript Scribe]",
+                dialogue: '"We spend the twilight hours copying the Nyaya aphorisms onto treated palm leaves using iron styluses. Precision in logic ensures clarity in thought."'
+            }
+        };
+
+        function switchNpc(key, element) {
+            document.querySelectorAll('.character-card').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+
+            const npc = npcData[key];
+            if (npc) {
+                const nameEl = document.getElementById('npc-name');
+                const tagEl = document.getElementById('npc-tag');
+                const dialEl = document.getElementById('npc-dialogue');
+
+                // Fade swap
+                dialEl.style.opacity = '0';
+                setTimeout(() => {
+                    nameEl.textContent = npc.name;
+                    tagEl.textContent = npc.tag;
+                    dialEl.textContent = npc.dialogue;
+                    dialEl.style.opacity = '1';
+                }, 150);
+            }
+        }
+
+        // ── 2. Web Audio API Ambient Synthesizer (Nalanda Chimes) ──
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let ambientInterval = null;
+
+        function playNalandaChime(freq = 432, duration = 1.6) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        const audioToggleBtn = document.getElementById('bg-audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+
+        if (audioToggleBtn) {
+            audioToggleBtn.addEventListener('click', () => {
+                isAudioPlaying = !isAudioPlaying;
+                if (isAudioPlaying) {
+                    audioIcon.className = 'fas fa-volume-high text-sm text-amber-400 animate-pulse';
+                    playNalandaChime(528, 2.0);
+                    const scale = [264, 330, 396, 440, 528, 660];
+                    ambientInterval = setInterval(() => {
+                        if (!isAudioPlaying) return;
+                        const note = scale[Math.floor(Math.random() * scale.length)];
+                        playNalandaChime(note, 2.5);
+                    }, 2800);
+                } else {
+                    audioIcon.className = 'fas fa-volume-xmark text-sm';
+                    if (ambientInterval) clearInterval(ambientInterval);
+                }
+            });
+        }
+
+        // ── 4. Mobile Menu Toggle ──
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close mobile menu on link click
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+        }
+
+        // ── 5. Download Modal Handlers ──
+        const downloadModal = document.getElementById('download-modal');
+        function openDownloadModal() {
+            if (downloadModal) {
+                downloadModal.classList.remove('hidden');
+                downloadModal.classList.add('flex');
+            }
+        }
+        function closeDownloadModal() {
+            if (downloadModal) {
+                downloadModal.classList.add('hidden');
+                downloadModal.classList.remove('flex');
+            }
+        }
+        function triggerDownloadExe() {
+            const status = document.getElementById('dl-status');
+            const btnText = document.getElementById('dl-btn-text');
+            if (status) status.classList.remove('hidden');
+            if (btnText) btnText.textContent = 'Generating Package...';
+            setTimeout(() => {
+                if (btnText) btnText.textContent = 'Download Complete!';
+                // Trigger fallback download of game guide / executable reference
+                const link = document.createElement('a');
+                link.href = '../dharohar/Dharohar_Game_Guide.docx';
+                link.download = 'Dharohar_Game_Guide.docx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 1200);
+        }
+
+        // ── 6. GSAP Scroll Animations ──
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                console.log('GSAP not loaded, falling back to CSS smooth scrolling');
+                return;
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Subtle card entrance stagger animations
+            gsap.from('.domain-card', {
+                y: 40,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                scrollTrigger: {
+                    trigger: '#features',
+                    start: 'top 75%'
+                }
+            });
+
+            gsap.from('.team-member-card', {
+                y: 35,
+                opacity: 0,
+                duration: 0.7,
+                stagger: 0.12,
+                scrollTrigger: {
+                    trigger: '#credits',
+                    start: 'top 75%'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
