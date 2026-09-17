@@ -1,6 +1,6 @@
 /*
  * Dharohar 1.0 — 3-Section Interactive Web Portal
- * Theme: Ancient Nalanda Mahavihara | 2D Pixel-Art Aesthetics | Cloud Parallax
+ * Theme: Ancient Nalanda Mahavihara | 2D Pixel-Art Aesthetics
  */
 
 /* ═══════════ Font Faces ═══════════ */
@@ -392,13 +392,60 @@ body {
     filter: blur(90px);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .cloud-fg-left, .cloud-fg-right {
-        width: 75%;
-    }
-    .cloud-transition-stage {
-        margin-top: -60px;
-        margin-bottom: -20px;
-    }
+/* ═══════════ Social Icon Buttons ═══════════ */
+.pixel-social-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 15, 22, 0.9);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    color: #fbbf24;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.18s cubic-bezier(0.2, 0, 0.2, 1);
+    box-shadow: 
+        inset -1px -1px 0px 0px rgba(180, 83, 9, 0.6),
+        inset 1px 1px 0px 0px rgba(251, 191, 36, 0.35),
+        0 2px 8px rgba(0, 0, 0, 0.4);
 }
+
+.pixel-social-icon:hover {
+    background: #d97706;
+    border-color: #fde68a;
+    color: #070a0e;
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 
+        inset -1px -1px 0px 0px #78350f,
+        inset 1px 1px 0px 0px #ffffff,
+        0 4px 14px rgba(245, 158, 11, 0.5);
+}
+
+
+/* ═══════════ Game Demo 16:9 Hub ═══════════ */
+.game-demo-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #080d14;
+    border: 2px solid var(--saffron-mid);
+    box-shadow: 
+        inset -2px -2px 0px 0px var(--saffron-deep),
+        inset 2px 2px 0px 0px var(--gold-bright),
+        0 10px 35px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.game-demo-container video,
+.game-demo-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+
+
